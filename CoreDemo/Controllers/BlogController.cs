@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
 {
-    public class BlogCantroller : Controller
+    public class BlogController : Controller
     {
         BlogManager blogManager=new BlogManager(new EfBlogRepository());
 
@@ -16,6 +16,12 @@ namespace CoreDemo.Controllers
         {
             var values = blogManager.GetBlogListWithCategory();
 
+            return View(values);
+        }
+
+        public IActionResult BlogReadAll(int id)
+        {
+            var values = blogManager.GetBlogByID(id);
             return View(values);
         }
     }
